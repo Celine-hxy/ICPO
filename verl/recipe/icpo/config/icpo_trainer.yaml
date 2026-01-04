@@ -1,0 +1,103 @@
+# Format checks enforced on CI:
+# 1. Comments must appear above each field.
+# 2. There must be a blank line between each field.
+# 3. Inline comments (after a field on the same line) are not allowed.
+# 4. Indentation level is respected for nested fields.
+
+hydra:
+  searchpath:
+    - file://verl/trainer/config
+
+defaults:
+  - ppo_trainer
+  - _self_
+
+actor_rollout_ref:
+  # Hint
+  hint:
+    # Whether to enable hint
+    enabled: False
+  
+  # Mixed rollout configuration
+  off_policy_rollout:
+    rollout_num: 4
+
+  # Adaptive entropy
+  adaptive_entropy:
+
+    # Entropy coefficient
+    entropy_coeff: 0.001
+
+    # Whether to enable adaptive entropy
+    enabled: False
+
+    # Maximum entropy coefficient
+    max_ent_coef: 0.5
+
+    # Minimum entropy coefficient
+    min_ent_coef: 0
+
+    # Delta entropy coefficient
+    delta_ent_coef: 0.001
+
+    # Target entropy
+    target_ent: 0
+
+
+  # Adaptive temperature
+  adaptive_temperature:
+
+    # Initial temperature
+    init_temp: 1.0
+
+    # Whether to enable adaptive temperature
+    enabled: False
+
+    # Maximum temperature
+    max_temp: 1.2
+
+    # Minimum temperature
+    min_temp: 0.8
+
+    # Delta temperature
+    delta_temp: 0.01
+
+    # Warmup steps
+    warmup_steps: 0
+
+    # Target entropy
+    target_ent: 0.5
+  
+  # Demo cache configuration
+  demo_cache:
+    # Maximum number of entries in the cache
+    max_size: 1000
+    # Minimum pass rate to consider a sample as high-quality
+    min_pass_rate: 1.0
+    # Directory to persist cache (optional)
+    cache_dir: "./demo_cache"
+    # Threshold for similarity-based retrieval
+    similarity_threshold: 0.8
+    # Maximum age of cache entries in seconds (optional)
+    max_cache_age: null
+    # Number of demonstrations to use for n-shot learning
+    n_demo: 1
+    # Path to cold start demo cache
+    cold_start_demo_path: null
+    
+    demo_match_strategy: "random"  # Demo matching strategy ["random", "similarity", "reward"]
+    
+    # Cache management
+    cache_update_strategy: "fifo"  # Cache update strategy ["fifo", "lru"]
+    save_best_reward_only: true   # Only save highest reward trajectory per question
+
+reward_model:
+  reward_manager: 'icpo'
+  
+  reward_kwargs:
+    reward_type: 'vanilla'
+    alpha: 0.2
+    beta: 1
+
+  val_reward_kwargs:
+    reward_type: 'vanilla'
