@@ -57,7 +57,7 @@ For the specific parameters, we follow [LUFFY](https://github.com/ElliottYan/LUF
 
 ## Citation
 
-<!-- If you find our model, data, or evaluation code useful, please consider citing our paper.
+If you find our model, data, or evaluation code useful, please consider citing our paper.
 ```text
 @misc{huang2025thinkoutsidepolicyincontext,
       title={Think Outside the Policy: In-Context Steered Policy Optimization}, 
@@ -68,7 +68,8 @@ For the specific parameters, we follow [LUFFY](https://github.com/ElliottYan/LUF
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2510.26519}, 
 }
-``` -->
+```
+
 
 Our code is based on the [verl](https://github.com/volcengine/verl) framework for training, and the ICPO implementation is inspired by the [LUFFY](https://github.com/ElliottYan/LUFFY) project. We use the open-source [LIMO](https://github.com/GAIR-NLP/LIMO) codebase for evaluation.
 
